@@ -8,7 +8,7 @@ export default function handler(req, res) {
 
   const data = pipeData(
     filterData(search),
-    sortData(field, direction)
+    sortData(field || 'Player', direction)
   )(rushingJson);
 
   res.setHeader('Content-Disposition', 'attachment; filename=output.json');
