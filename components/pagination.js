@@ -1,8 +1,9 @@
+const ROW_VALUES = [25, 50, 100];
+
 const Pagination = props => {
   const {page, setPage, totalRows, rowCount, setRowCount} = props;
   const rowTo = (page - 1) * rowCount + rowCount;
   const rowFrom = (page - 1) * rowCount + 1;
-  const rowCountList = [25, 50, 100];
   return (
     <div className="flex align-center justify-between mt-5 px-5">
       <h3 className="mr-5">{`${rowFrom} - ${rowTo} of ${totalRows}`}</h3>
@@ -12,11 +13,10 @@ const Pagination = props => {
           onChange={e => setRowCount(parseInt(e.target.value))}
           className="select select-bordered w-36 mr-5 select-sm"
         >
-          {rowCountList.map(count => (
+          {ROW_VALUES.map(count => (
             <option
               value={count}
               key={`cnt-${count}`}
-              selected={count === rowCount}
             >{`${count} per page`}</option>
           ))}
         </select>
