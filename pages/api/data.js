@@ -9,7 +9,7 @@ export default function handler(req, res) {
   const data = pipeData(
     filterData(search),
     sortData(field, direction),
-    paginateData(page, size)
+    paginateData(page, parseInt(size))
   )(rushingJson);
 
   res.status(200).json({
