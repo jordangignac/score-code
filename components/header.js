@@ -1,5 +1,4 @@
-const Header = props => {
-  const {initiateDownload} = props;
+const Header = ({initiateDownload}) => {
   return (
     <div className="navbar mb-2 shadow-lg bg-neutral text-neutral-content rounded-box">
       <div className="flex-1 px-2 mx-2">

@@ -1,17 +1,18 @@
 const ROW_VALUES = [25, 50, 100];
 
-const Pagination = props => {
-  const {page, setPage, totalRows, rowCount, setRowCount} = props;
-
+const Pagination = ({page, setPage, totalRows, rowCount, setRowCount}) => {
+  // Generate to/from item numbers from page and row count
   const rowTo = Math.min((page - 1) * rowCount + rowCount, totalRows);
   const rowFrom = totalRows === 0 ? 0 : Math.max((page - 1) * rowCount + 1, 1);
 
+  // Handler for row count change updating value and constraining page to new count
   const onRowCountChange = event => {
     const count = parseInt(event.target.value);
     setPage(count % page || 1);
     setRowCount(count);
   };
 
+  // Common page click update function that allows passing in update value
   const onSetPageClick = val => () => {
     setPage(val);
   };

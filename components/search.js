@@ -7,16 +7,15 @@ const SORT_VALUES = {
 
 const DIRECTION_VALUES = ['asc', 'desc'];
 
-const Search = props => {
-  const {
-    searchTerm,
-    setSearchTerm,
-    sortField,
-    setSortField,
-    sortDirection,
-    setSortDirection,
-  } = props;
-
+const Search = ({
+  searchTerm,
+  setSearchTerm,
+  sortField,
+  setSortField,
+  sortDirection,
+  setSortDirection,
+}) => {
+  // Common on change update that can be supplied custom update function
   const onChangeUpdate = func => event => {
     func(event.target.value);
   };
