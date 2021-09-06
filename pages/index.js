@@ -65,6 +65,7 @@ export default function Home() {
         <Header {...{initiateDownload}} />
         <Search
           {...{
+            setPage,
             searchTerm,
             setSearchTerm,
             sortField,

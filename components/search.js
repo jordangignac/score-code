@@ -1,6 +1,7 @@
 import {SORT_VALUES, DIRECTION_VALUES} from '../tools/constants';
 
 const Search = ({
+  setPage,
   searchTerm,
   setSearchTerm,
   sortField,
@@ -9,7 +10,8 @@ const Search = ({
   setSortDirection,
 }) => {
   // Common on change update that can be supplied custom update function
-  const onChangeUpdate = func => event => {
+  const onChangeUpdate = (func, resetPage) => event => {
+    if (resetPage) setPage(1);
     func(event.target.value);
   };
 
@@ -19,7 +21,7 @@ const Search = ({
         type="text"
         placeholder="Player Search"
         className="input input-neutral input-bordered w-full mr-2"
-        onChange={onChangeUpdate(setSearchTerm)}
+        onChange={onChangeUpdate(setSearchTerm, true)}
         value={searchTerm}
       />
       <select
