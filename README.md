@@ -62,4 +62,22 @@ If you have any questions regarding requirements, do not hesitate to email your 
 
 ### Installation and running this solution
 
-... TODO
+I have used Next.js as a simple way to get this solution up and running which will require the latest stable version of Node (Node.js 12.0 or later) & NPM.
+
+You can then install the npm dependencies using the command:
+
+```
+npm install
+```
+
+Then run the app in development mode (frontend & backend) using the following command:
+
+```
+npm run dev
+```
+
+Simple unit tests (using Jest) can be executed using the command:
+
+```
+npm run test
+```
