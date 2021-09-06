@@ -27,11 +27,22 @@ export const sortData =
   (field = '', direction = 'asc') =>
   data => {
     if (!field) return data;
+
     const isAsc = direction === 'asc';
+    const collator = new Intl.Collator(undefined, {
+      sensitivity: 'base',
+      numeric: true,
+    });
+
     return data.sort((a, b) => {
       const first = isAsc ? a[field] : b[field];
       const second = isAsc ? b[field] : a[field];
-      if (typeof a[field] === 'number') return first - second;
-      else return first.localeCompare(second);
+      return (
+        first - second ||
+        collator.compare(
+          first.toString().replace(/,/g, ''),
+          second.toString().replace(/,/g, '')
+        )
+      );
     });
   };
