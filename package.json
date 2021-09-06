@@ -3,7 +3,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest"
   },
   "dependencies": {
     "axios": "^0.21.3",
@@ -15,6 +16,8 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.2.6",
+    "jest": "^27.1.0",
+    "jest-esm-transformer": "^1.0.0",
     "postcss": "^8.3.5",
     "tailwindcss": "^2.2.4"
   }
