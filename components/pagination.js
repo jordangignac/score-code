@@ -10,7 +10,11 @@ const Pagination = props => {
       <div className="flex align-center justify-center">
         <select
           value={rowCount}
-          onChange={e => setRowCount(parseInt(e.target.value))}
+          onChange={e => {
+            const count = parseInt(e.target.value);
+            setPage(count % page);
+            setRowCount(count);
+          }}
           className="select select-bordered w-36 mr-5 select-sm"
         >
           {ROW_VALUES.map(count => (
