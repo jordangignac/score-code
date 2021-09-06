@@ -1,3 +1,5 @@
+import {unparse} from 'papaparse';
+
 import {pipeData} from './utils';
 import {ROW_VALUES, DIRECTION_VALUES} from '../tools/constants';
 
@@ -54,12 +56,11 @@ export const sortData =
   };
 
 /**
- * Manually generate csv string from headers and row data
+ * Generate csv string from headers and row data using
+ * well known library for compliance and avoiding edge-cases
  */
 export const generateCsvString = rows => {
-  let csvString = `${headers.join(',')}\n`;
-  rows.forEach(row => (csvString += `${Object.values(row).join(',')}\r\n`));
-  return csvString;
+  return unparse(rows, {columns: headers});
 };
 
 /**
