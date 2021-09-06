@@ -4,7 +4,7 @@ const Pagination = props => {
   const {page, setPage, totalRows, rowCount, setRowCount} = props;
 
   const rowTo = Math.min((page - 1) * rowCount + rowCount, totalRows);
-  const rowFrom = Math.max((page - 1) * rowCount + 1, 1);
+  const rowFrom = totalRows === 0 ? 0 : Math.max((page - 1) * rowCount + 1, 1);
 
   const onRowCountChange = event => {
     const count = parseInt(event.target.value);
