@@ -8,12 +8,11 @@ export default function handler(req, res) {
 
   const data = pipeData(
     filterData(search),
-    sortData(field || 'Player', direction),
-    paginateData(page, parseInt(size))
+    sortData(field || 'Player', direction)
   )(rushingJson);
 
   res.status(200).json({
-    total: rushingJson.length,
-    results: data,
+    results: paginateData(page, parseInt(size))(data),
+    total: data.length,
   });
 }
