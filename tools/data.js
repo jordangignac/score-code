@@ -1,3 +1,7 @@
+import {pipeData} from './utils';
+import {ROW_VALUES, DIRECTION_VALUES} from '../tools/constants';
+
+import rushingJson from '../data/rushing.json';
 import headers from '../data/headers.json';
 
 /**
@@ -56,4 +60,28 @@ export const generateCsvString = rows => {
   let csvString = `${headers.join(',')}\n`;
   rows.forEach(row => (csvString += `${Object.values(row).join(',')}\r\n`));
   return csvString;
+};
+
+/**
+ * Common function for fetching rushing data and piping through
+ * filtering and sorting functions with defaults
+ */
+export const fetchData = (search, field, direction) => {
+  return pipeData(
+    filterData(search),
+    sortData(field || 'Player', direction || 'asc')
+  )(rushingJson);
+};
+
+/**
+ * Validate param values returning error string on invalid or null on valid
+ */
+export const validateRequestParams = (size, field, direction) => {
+  if (field && !headers.includes(field)) {
+    return 'Invalid sort field param';
+  } else if (direction && !DIRECTION_VALUES.includes(direction)) {
+    return 'Invalid sort direction param';
+  } else if (size && !ROW_VALUES.includes(parseInt(size))) {
+    return 'Invalid row size param';
+  } else return null;
 };
