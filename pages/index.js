@@ -11,6 +11,7 @@ import Pagination from '../components/pagination';
 import headers from '../data/headers.json';
 
 export default function Home() {
+  // Initialize required app state
   const [rows, setRows] = React.useState([]);
   const [sortField, setSortField] = React.useState('');
   const [searchTerm, setSearchTerm] = React.useState('');
@@ -20,6 +21,7 @@ export default function Home() {
   const [error, setError] = React.useState('');
   const [page, setPage] = React.useState(1);
 
+  // Fetch/persist api data on initial load and when query params changed
   React.useEffect(() => {
     axios
       .get('/api/data', {
@@ -41,6 +43,7 @@ export default function Home() {
       });
   }, [page, rowCount, sortField, searchTerm, sortDirection]);
 
+  // Helper function for initiating csv download
   const initiateDownload = () => {
     const params = new URLSearchParams({
       field: sortField,
