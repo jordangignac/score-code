@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Head from 'next/head';
 
+import Error from '../components/error';
 import Table from '../components/table';
 import Search from '../components/search';
 import Header from '../components/header';
@@ -16,6 +17,7 @@ export default function Home() {
   const [sortDirection, setSortDirection] = React.useState('asc');
   const [totalRows, setTotalRows] = React.useState(1);
   const [rowCount, setRowCount] = React.useState(25);
+  const [error, setError] = React.useState('');
   const [page, setPage] = React.useState(1);
 
   React.useEffect(() => {
@@ -35,6 +37,7 @@ export default function Home() {
       })
       .catch(err => {
         console.error('Error', err);
+        setError(err);
       });
   }, [page, rowCount, sortField, searchTerm, sortDirection]);
 
@@ -67,6 +70,7 @@ export default function Home() {
             setSortDirection,
           }}
         />
+        {error && <Error {...{error}} />}
         <Table headers={headers} rows={rows} />
         <Pagination {...{page, setPage, totalRows, rowCount, setRowCount}} />
       </div>
