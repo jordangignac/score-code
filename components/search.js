@@ -1,5 +1,5 @@
 const SORT_VALUES = {
-  None: '',
+  Name: '',
   'Longest Rush': 'Lng',
   'Total Rushing Yards': 'Yds',
   'Total Rushing Touchdowns': 'TD',
