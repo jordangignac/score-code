@@ -5,18 +5,22 @@ const Table = props => {
 
   const renderRows = rows => {
     return rows.map(row => (
-      <tr>
-        {props.headers.map((header, idx) => {
-          const style = idx === 0 ? 'sticky left-0 w-48' : '';
-          return <td className={style}>{row[header]}</td>;
-        })}
+      <tr key={`row-${row.Player}`.split(' ').join('')}>
+        {props.headers.map((header, idx) => (
+          <td
+            className={idx === 0 ? 'sticky left-0 w-48' : ''}
+            key={`td-${row.Player}-${header}`.split(' ').join('')}
+          >
+            {row[header]}
+          </td>
+        ))}
       </tr>
     ));
   };
 
   return (
     <div className="overflow-x-auto">
-      <table class="table w-full table-zebra">
+      <table className="table w-full table-zebra">
         <thead>
           <tr>{renderHeaders(props.headers)}</tr>
         </thead>
