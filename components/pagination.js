@@ -1,4 +1,4 @@
-const ROW_VALUES = [25, 50, 100];
+import {ROW_VALUES} from '../tools/constants';
 
 const Pagination = ({page, setPage, totalRows, rowCount, setRowCount}) => {
   // Generate to/from item numbers from page and row count

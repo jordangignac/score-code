@@ -1,11 +1,4 @@
-const SORT_VALUES = {
-  Name: '',
-  'Longest Rush': 'Lng',
-  'Total Rushing Yards': 'Yds',
-  'Total Rushing Touchdowns': 'TD',
-};
-
-const DIRECTION_VALUES = ['asc', 'desc'];
+import {SORT_VALUES, DIRECTION_VALUES} from '../tools/constants';
 
 const Search = ({
   searchTerm,
