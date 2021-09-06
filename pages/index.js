@@ -14,6 +14,9 @@ export default function Home() {
   const [sortField, setSortField] = React.useState('');
   const [searchTerm, setSearchTerm] = React.useState('');
   const [sortDirection, setSortDirection] = React.useState('asc');
+  const [totalRows, setTotalRows] = React.useState(1);
+  const [rowCount, setRowCount] = React.useState(25);
+  const [page, setPage] = React.useState(1);
 
   React.useEffect(() => {
     axios
@@ -22,21 +25,38 @@ export default function Home() {
           field: sortField,
           search: searchTerm,
           direction: sortDirection,
+          size: rowCount,
+          page: page,
         },
       })
-      .then(({data}) => setRows(data))
-      .catch(err => console.error('Error', err));
-  }, [sortField, searchTerm, sortDirection]);
+      .then(({data}) => {
+        setTotalRows(data.total);
+        setRows(data.results);
+      })
+      .catch(err => {
+        console.error('Error', err);
+      });
+  }, [page, rowCount, sortField, searchTerm, sortDirection]);
+
+  const initiateDownload = () => {
+    const params = new URLSearchParams({
+      field: sortField,
+      search: searchTerm,
+      direction: sortDirection,
+    });
+    const url = `/api/download/?${params.toString()}`;
+    window.open(url);
+  };
 
   return (
-    <React.Fragment data-theme="light">
+    <React.Fragment>
       <div className="w-full p-5">
         <Head>
           <title>score-code</title>
           <meta name="description" content="nfl-rushing code challenge" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <Header />
+        <Header {...{initiateDownload}} />
         <Search
           {...{
             searchTerm,
@@ -48,7 +68,7 @@ export default function Home() {
           }}
         />
         <Table headers={headers} rows={rows} />
-        <Pagination />
+        <Pagination {...{page, setPage, totalRows, rowCount, setRowCount}} />
       </div>
     </React.Fragment>
   );
