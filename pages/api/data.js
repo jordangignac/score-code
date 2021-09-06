@@ -12,5 +12,8 @@ export default function handler(req, res) {
     paginateData(page, size)
   )(rushingJson);
 
-  res.status(200).json(data);
+  res.status(200).json({
+    total: rushingJson.length,
+    results: data,
+  });
 }
