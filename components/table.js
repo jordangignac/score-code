@@ -6,8 +6,9 @@ const Table = props => {
   const renderRows = rows => {
     return rows.map(row => (
       <tr>
-        {props.headers.map(header => {
-          return <td>{row[header]}</td>;
+        {props.headers.map((header, idx) => {
+          const style = idx === 0 ? 'sticky left-0 w-48' : '';
+          return <td className={style}>{row[header]}</td>;
         })}
       </tr>
     ));
