@@ -16,18 +16,23 @@ const Search = props => {
     sortDirection,
     setSortDirection,
   } = props;
+
+  const onChangeUpdate = func => event => {
+    func(event.target.value);
+  };
+
   return (
     <div className="w-full flex mb-3">
       <input
         type="text"
         placeholder="Player Search"
         className="input input-neutral input-bordered w-full mr-2"
-        onChange={e => setSearchTerm(e.target.value)}
+        onChange={onChangeUpdate(setSearchTerm)}
         value={searchTerm}
       />
       <select
         value={sortField}
-        onChange={e => setSortField(e.target.value)}
+        onChange={onChangeUpdate(setSortField)}
         className="select select-bordered w-50 mr-2"
       >
         {Object.keys(SORT_VALUES).map(key => (
@@ -38,7 +43,7 @@ const Search = props => {
       </select>
       <select
         value={sortDirection}
-        onChange={e => setSortDirection(e.target.value)}
+        onChange={onChangeUpdate(setSortDirection)}
         className="select select-bordered w-28"
       >
         {DIRECTION_VALUES.map(dir => (
