@@ -5,11 +5,11 @@ const Table = props => {
 
   const renderRows = rows => {
     return rows.map(row => (
-      <tr key={`row-${row.Player}`.split(' ').join('')}>
+      <tr key={`row-${row.Player}`}>
         {props.headers.map((header, idx) => (
           <td
+            key={`td-${row.Player}-${header}`}
             className={idx === 0 ? 'sticky left-0 w-48' : ''}
-            key={`td-${row.Player}-${header}`.split(' ').join('')}
           >
             {row[header]}
           </td>
