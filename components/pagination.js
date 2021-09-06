@@ -12,7 +12,7 @@ const Pagination = props => {
           value={rowCount}
           onChange={e => {
             const count = parseInt(e.target.value);
-            setPage(count % page);
+            setPage(count % page || 1);
             setRowCount(count);
           }}
           className="select select-bordered w-36 mr-5 select-sm"
