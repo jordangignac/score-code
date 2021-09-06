@@ -10,7 +10,7 @@ import headers from '../data/headers.json';
  * Return paginated subset of provided data
  */
 export const paginateData =
-  (page = 1, size = 50) =>
+  (page = 1, size = 25) =>
   data => {
     const start = (page - 1) * size;
     return data.slice(start, start + size);
