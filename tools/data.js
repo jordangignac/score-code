@@ -1,3 +1,5 @@
+import headers from '../data/headers.json';
+
 /**
  * Return paginated subset of provided data
  */
@@ -46,3 +48,12 @@ export const sortData =
       );
     });
   };
+
+/**
+ * Manually generate csv string from headers and row data
+ */
+export const generateCsvString = rows => {
+  let csvString = `${headers.join(',')}\n`;
+  rows.forEach(row => (csvString += `${Object.values(row).join(',')}\r\n`));
+  return csvString;
+};

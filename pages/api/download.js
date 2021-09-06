@@ -1,6 +1,6 @@
 import rushingJson from '../../data/rushing.json';
 
-import {sortData, filterData} from '../../tools/data';
+import {sortData, filterData, generateCsvString} from '../../tools/data';
 import {pipeData} from '../../tools/utils';
 
 export default function handler(req, res) {
@@ -11,8 +11,8 @@ export default function handler(req, res) {
     sortData(field || 'Player', direction)
   )(rushingJson);
 
-  res.setHeader('Content-Disposition', 'attachment; filename=output.json');
-  res.setHeader('Content-Type', 'application/json');
+  res.setHeader('Content-Disposition', 'attachment; filename=output.csv');
+  res.setHeader('Content-Type', 'text/csv');
 
-  res.status(200).send(data);
+  res.status(200).send(generateCsvString(data));
 }
