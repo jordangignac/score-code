@@ -31,7 +31,7 @@ const Search = props => {
         className="select select-bordered w-50 mr-2"
       >
         {Object.keys(SORT_VALUES).map(key => (
-          <option key={`sort-${key}`} value={SORT_VALUES[key]}>
+          <option key={`sort-${SORT_VALUES[key]}`} value={SORT_VALUES[key]}>
             {key}
           </option>
         ))}
