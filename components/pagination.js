@@ -8,7 +8,7 @@ const Pagination = ({page, setPage, totalRows, rowCount, setRowCount}) => {
   // Handler for row count change updating value and constraining page to new count
   const onRowCountChange = event => {
     const count = parseInt(event.target.value);
-    setPage(count % page || 1);
+    setPage(Math.min(page, Math.ceil(totalRows / count)));
     setRowCount(count);
   };
 
